@@ -58,7 +58,3 @@ print("The first cost is: %.2f" %J)
 theta = np.array([-1, 2])
 J = computeCost(x, y, theta)
 print("The first cost is: %.2f" %J)
-
-
-
-

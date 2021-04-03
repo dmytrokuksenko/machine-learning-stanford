@@ -58,8 +58,8 @@ def gradientDecent(x, y, theta, alpha, iterations):
         for m in range(n):
             h[m] = theta[0] * x[m][0] + theta[1] * x[m][1]
 
-        theta[0] = theta[0] + alpha * (np.sum(np.multiply((h - y), x[:, 0])) / n)
-        theta[1] = theta[1] + alpha * (np.sum(np.multiply((h - y), x[:, 1])) / n)
+        theta[0] = theta[0] - alpha * (np.sum(np.multiply((h - y), x[:, 0])) / n)
+        theta[1] = theta[1] - alpha * (np.sum(np.multiply((h - y), x[:, 1])) / n)
 
     return theta
 
@@ -91,6 +91,6 @@ print("The expected vs. calculated cost is: %.2f vs. %.2f" %(J, J_anl))
 
 # Compute fitting parameters using gradient decent
 theta = np.zeros((2,1))
-theta = gradientDecent(x, y, theta, alpha, iterations)
+theta = gradientDecent(x, y, [0, 0], alpha, iterations)
 
 print("Fitting parameters computed from Gradient Decent are: %.2f and %.2f" %(theta[0], theta[1]))

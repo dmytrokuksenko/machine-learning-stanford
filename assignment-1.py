@@ -50,7 +50,7 @@ def gradientDecent(x, y, theta, alpha, iterations):
     """
 
     n = np.prod(y.shape) # Number of training examples
-    J_history = np.zeros(n)
+    J_history = np.zeros(iterations)
     h = np.zeros(n)  # Initialization hypothesis vector with zeros
 
     for i in range(iterations):
@@ -60,6 +60,8 @@ def gradientDecent(x, y, theta, alpha, iterations):
 
         theta[0] = theta[0] - alpha * (np.sum(np.multiply((h - y), x[:, 0])) / n)
         theta[1] = theta[1] - alpha * (np.sum(np.multiply((h - y), x[:, 1])) / n)
+
+        J_history[i] = computeCost(x, y, theta)
 
     return theta
 
@@ -94,3 +96,9 @@ theta = np.zeros((2,1))
 theta = gradientDecent(x, y, [0, 0], alpha, iterations)
 
 print("Fitting parameters computed from Gradient Decent are: %.2f and %.2f" %(theta[0], theta[1]))
+
+# Plot the predicted results
+plt.plot(x, y, 'rx')
+plt.plot(x[:, 1])
+plt.show()
+
